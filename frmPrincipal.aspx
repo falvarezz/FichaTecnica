@@ -17,7 +17,7 @@
                 </asp:UpdatePanel>
             </div>
             <div class="col-md-4 align-self-start">
-                <asp:TextBox ID="txtBusqueda" CssClass="ml-auto form-control" runat="server" OnTextChanged="txtBusqueda_TextChanged"></asp:TextBox>
+                <asp:TextBox ID="txtBusqueda" CssClass="ml-auto form-control" runat="server"></asp:TextBox>
             </div>
             <div class="col-md-2">
                 <asp:Button ID="btnBusqueda" CssClass="btn btn-secondary" runat="server" Text="Buscar" OnClick="btnBusqueda_Click" />

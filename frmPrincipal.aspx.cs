@@ -11,12 +11,16 @@ namespace FichaTecnica
 {
     public partial class frmPrincipal : System.Web.UI.Page
     {
-        Empleados empleado = new Empleados();
+        
         Empleados emp = new Empleados();
         DataTable tEmpleados = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
-            ActualizarGrilla();
+            
+            if (!IsPostBack)
+            {
+                ActualizarGrilla();
+            }
         }
 
         protected void btnEliminar_Command(object sender, CommandEventArgs e)
@@ -48,8 +52,8 @@ namespace FichaTecnica
             try
             {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "hideModal", "hideModal()", true);
-                    //Empleados emp = new Empleados();
-                    //emp = new Empleados();
+                    
+                    emp = new Empleados();
 
                     emp.Nombre = txtNombre.Text;
                     emp.Apellido = txtApellido.Text;
@@ -107,10 +111,7 @@ namespace FichaTecnica
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "abrirError", "Error();", true);
             }
         }
-        protected void txtBusqueda_TextChanged(object sender, EventArgs e)
-        {
-            Busqueda();
-        }
+        
         protected void btnBusqueda_Click(object sender, EventArgs e)
         {
             Busqueda();
@@ -120,20 +121,25 @@ namespace FichaTecnica
         {
             if (!string.IsNullOrEmpty(txtBusqueda.Text))
             {
+                Empleados empleado = new Empleados();
                 string valor = txtBusqueda.Text;
                 tEmpleados = empleado.GetEmpleados();
                 EnumerableRowCollection<DataRow> query = from empleados in tEmpleados.AsEnumerable()
                                                          where string.Equals(empleados.Field<string>("nombre"), valor, StringComparison.OrdinalIgnoreCase)
                                                          select empleados;
-
-                DataView view = query.AsDataView();
-                rptDatos.DataSource = view;
-                rptDatos.DataBind();
+                
+                    DataView view = query.AsDataView();
+                    rptDatos.DataSource = view;
+                    rptDatos.DataBind();
+               
             }
             else
             {
+                rptDatos.DataSource = null;
+                rptDatos.DataBind();
                 ActualizarGrilla();
             }
+           
         }
 
     }
