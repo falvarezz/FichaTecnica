@@ -68,20 +68,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="frmAltaModificar.aspx" />
     <Content Include="frmPrincipal.aspx" />
     <Content Include="styles.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Empleados.cs" />
-    <Compile Include="frmAltaModificar.aspx.cs">
-      <DependentUpon>frmAltaModificar.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmAltaModificar.aspx.designer.cs">
-      <DependentUpon>frmAltaModificar.aspx</DependentUpon>
-    </Compile>
     <Compile Include="frmPrincipal.aspx.cs">
       <DependentUpon>frmPrincipal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
